@@ -4,11 +4,55 @@
     "types": [
         {
             "new_type_name": "ATOMIC_ATTRIBUTE",
-            "type": "variant_int8_int16_int32_int64_uint8_uint16_uint32_uint64_float32_float64_string_bytes_int16[]_int32[]_int64[]_uint8[]_uint16[]_uint32[]_uint64[]_float32[]_float64[]_string[]"
+            "type": "variant_int8_int16_int32_int64_uint8_uint16_uint32_uint64_float32_float64_string_INT8_VEC_INT16_VEC_INT32_VEC_INT64_VEC_UINT8_VEC_UINT16_VEC_UINT32_VEC_UINT64_VEC_FLOAT_VEC_DOUBLE_VEC_STRING_VEC"
         },
         {
             "new_type_name": "ATTRIBUTE_MAP",
             "type": "pair_string_ATOMIC_ATTRIBUTE[]"
+        },
+        {
+            "new_type_name": "DOUBLE_VEC",
+            "type": "float64[]"
+        },
+        {
+            "new_type_name": "FLOAT_VEC",
+            "type": "float32[]"
+        },
+        {
+            "new_type_name": "INT16_VEC",
+            "type": "int16[]"
+        },
+        {
+            "new_type_name": "INT32_VEC",
+            "type": "int32[]"
+        },
+        {
+            "new_type_name": "INT64_VEC",
+            "type": "int64[]"
+        },
+        {
+            "new_type_name": "INT8_VEC",
+            "type": "bytes"
+        },
+        {
+            "new_type_name": "STRING_VEC",
+            "type": "string[]"
+        },
+        {
+            "new_type_name": "UINT16_VEC",
+            "type": "uint16[]"
+        },
+        {
+            "new_type_name": "UINT32_VEC",
+            "type": "uint32[]"
+        },
+        {
+            "new_type_name": "UINT64_VEC",
+            "type": "uint64[]"
+        },
+        {
+            "new_type_name": "UINT8_VEC",
+            "type": "uint8[]"
         }
     ],
     "structs": [
@@ -1227,8 +1271,8 @@
     "ricardian_clauses": [],
     "variants": [
         {
-            "name": "variant_int8_int16_int32_int64_uint8_uint16_uint32_uint64_float32_float64_string_bytes_int16[]_int32[]_int64[]_uint8[]_uint16[]_uint32[]_uint64[]_float32[]_float64[]_string[]",
-            "types": ["int8","int16","int32","int64","uint8","uint16","uint32","uint64","float32","float64","string","bytes","int16[]","int32[]","int64[]","uint8[]","uint16[]","uint32[]","uint64[]","float32[]","float64[]","string[]"]
+            "name": "variant_int8_int16_int32_int64_uint8_uint16_uint32_uint64_float32_float64_string_INT8_VEC_INT16_VEC_INT32_VEC_INT64_VEC_UINT8_VEC_UINT16_VEC_UINT32_VEC_UINT64_VEC_FLOAT_VEC_DOUBLE_VEC_STRING_VEC",
+            "types": ["int8","int16","int32","int64","uint8","uint16","uint32","uint64","float32","float64","string","INT8_VEC","INT16_VEC","INT32_VEC","INT64_VEC","UINT8_VEC","UINT16_VEC","UINT32_VEC","UINT64_VEC","FLOAT_VEC","DOUBLE_VEC","STRING_VEC"]
         }
     ]
 }
