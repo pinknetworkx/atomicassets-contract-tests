@@ -1,0 +1,7 @@
+contracts:
+  atomicassets:
+    abi: contract_source/atomicassets.abi
+    fixturesDir: tests/fixtures/atomicassets
+    name: atomicassets
+    wasm: contract_source/atomicassets.wasm
+options: null

@@ -1,0 +1,17 @@
+{
+    "atomicassets": [
+        {
+            "asset_counter": "1099511627776",
+            "template_counter": 1,
+            "offer_counter": "1",
+            "collection_format": [
+                {"name": "name", "type": "string"},
+                {"name": "img", "type": "ipfs"},
+                {"name": "description", "type": "string"}
+            ],
+            "supported_tokens": [
+                {"token_contract": "eosio.token", "token_symbol": "8,WAX"}
+            ]
+        }
+    ]
+}

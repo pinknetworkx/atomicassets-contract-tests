@@ -1,0 +1,48 @@
+#include "hydra.hpp"
+
+
+
+    //For Hydra Testing
+    HYDRA_FIXTURE_ACTION(
+        ((collections)(collections_s)(collections_t))
+        ((schemas)(schemas_s)(schemas_t))
+        ((templates)(templates_s)(templates_t))
+        ((assets)(assets_s)(assets_t))
+        ((offers)(offers_s)(offers_t))
+        ((balances)(balances_s)(balances_t))
+        ((config)(config_s)(config_t_for_abi))
+        ((tokenconfigs)(tokenconfigs_s)(tokenconfigs_t_for_abi))
+    )
+
+
+
+    TABLE config_s{
+        uint64_t            asset_counter = 1099511627780; //2^40
+        int32_t             template_counter = 1;
+        uint64_t            offer_counter = 1;
+        vector<FORMAT>      collection_format = {};
+        vector<TOKEN>       supported_tokens = {};
+
+        //For Hydra Testing
+        uint64_t primary_key() const { return name("config").value; };
+    };
+    typedef singleton<name("config"), config_s> config_t;
+    // https://github.com/EOSIO/eosio.cdt/issues/280
+    typedef multi_index<name("config"), config_s> config_t_for_abi;
+
+    TABLE tokenconfigs_s{
+        name                standard = name("atomicassets");
+        std::string         version = string("0.2.0");
+
+        //For Hydra Testing
+        uint64_t primary_key() const { return name("tokenconfigs").value; };
+    };
+    typedef singleton<name("tokenconfigs"), tokenconfigs_s> tokenconfigs_t;
+    // https://github.com/EOSIO/eosio.cdt/issues/280
+    typedef multi_index<name("tokenconfigs"), tokenconfigs_s> tokenconfigs_t_for_abi;
+
+
+
+    if (code == receiver) {
+        //For Hydra Testing
+        HYDRA_APPLY_FIXTURE_ACTION(atomicassets)
