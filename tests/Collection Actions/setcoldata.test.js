@@ -31,7 +31,7 @@ beforeEach(async () => {
 test("set basic data", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user1.accountName],
@@ -42,7 +42,7 @@ test("set basic data", async () => {
     });
 
     await atomicassets.contract.setcoldata({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         data: [
             {"key": "name", "value": ["string", "ABC"]}
         ]
@@ -53,7 +53,7 @@ test("set basic data", async () => {
 
     const collections = atomicassets.getTableRowsScoped("collections")["atomicassets"];
     expect(collections).toEqual([{
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         author: user1.accountName,
         allow_notify: true,
         authorized_accounts: [user1.accountName],
@@ -66,7 +66,7 @@ test("set basic data", async () => {
 test("overwrite data", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user1.accountName],
@@ -77,7 +77,7 @@ test("overwrite data", async () => {
     });
 
     await atomicassets.contract.setcoldata({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         data: [
             {"key": "name", "value": ["string", "123"]}
         ]
@@ -88,7 +88,7 @@ test("overwrite data", async () => {
 
     const collections = atomicassets.getTableRowsScoped("collections")["atomicassets"];
     expect(collections).toEqual([{
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         author: user1.accountName,
         allow_notify: true,
         authorized_accounts: [user1.accountName],
@@ -101,7 +101,7 @@ test("overwrite data", async () => {
 test("erase data", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user1.accountName],
@@ -112,7 +112,7 @@ test("erase data", async () => {
     });
 
     await atomicassets.contract.setcoldata({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         data: []
     }, [{
         actor: user1.accountName,
@@ -121,7 +121,7 @@ test("erase data", async () => {
 
     const collections = atomicassets.getTableRowsScoped("collections")["atomicassets"];
     expect(collections).toEqual([{
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         author: user1.accountName,
         allow_notify: true,
         authorized_accounts: [user1.accountName],
@@ -134,7 +134,7 @@ test("erase data", async () => {
 test("throw without authorization", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user1.accountName],
@@ -145,7 +145,7 @@ test("throw without authorization", async () => {
     });
 
     await expect(atomicassets.contract.setcoldata({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         data: []
     }, [{
         actor: user2.accountName,

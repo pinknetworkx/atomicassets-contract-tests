@@ -28,7 +28,7 @@ beforeEach(async () => {
     await atomicassets.loadFixtures();
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user1.accountName],
@@ -42,7 +42,7 @@ beforeEach(async () => {
 test("create minimal schema", async () => {
     await atomicassets.contract.createschema({
         authorized_creator: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format: [
             {name: "name", type: "string"}
@@ -52,7 +52,7 @@ test("create minimal schema", async () => {
         permission: "active"
     }]);
 
-    const collection_schemas = atomicassets.getTableRowsScoped("schemas")["testcol"];
+    const collection_schemas = atomicassets.getTableRowsScoped("schemas")["testcollect1"];
     expect(collection_schemas).toEqual([{
         schema_name: "testschema",
         format: [
@@ -64,7 +64,7 @@ test("create minimal schema", async () => {
 test("create bigger schema", async () => {
     await atomicassets.contract.createschema({
         authorized_creator: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format: [
             {name: "name", type: "string"},
@@ -76,7 +76,7 @@ test("create bigger schema", async () => {
         permission: "active"
     }]);
 
-    const collection_schemas = atomicassets.getTableRowsScoped("schemas")["testcol"];
+    const collection_schemas = atomicassets.getTableRowsScoped("schemas")["testcollect1"];
     expect(collection_schemas).toEqual([{
         schema_name: "testschema",
         format: [
@@ -90,7 +90,7 @@ test("create bigger schema", async () => {
 test("throw when format is empty", async () => {
     await expect(atomicassets.contract.createschema({
         authorized_creator: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format: []
     }, [{
@@ -102,7 +102,7 @@ test("throw when format is empty", async () => {
 test("throw when name attribute is not defined", async () => {
     await expect(atomicassets.contract.createschema({
         authorized_creator: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format: [
             {name: "img", type: "ipfs"}
@@ -125,7 +125,7 @@ test("create schema with a name that already exists in another collection", asyn
 
     await atomicassets.contract.createschema({
         authorized_creator: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format: [
             {name: "name", type: "string"}
@@ -135,7 +135,7 @@ test("create schema with a name that already exists in another collection", asyn
         permission: "active"
     }]);
 
-    const collection_schemas = atomicassets.getTableRowsScoped("schemas")["testcol"];
+    const collection_schemas = atomicassets.getTableRowsScoped("schemas")["testcollect1"];
     expect(collection_schemas).toEqual([{
         schema_name: "testschema",
         format: [
@@ -146,7 +146,7 @@ test("create schema with a name that already exists in another collection", asyn
 
 test("throw when schema with this name already exists in collection", async () => {
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"}
@@ -156,7 +156,7 @@ test("throw when schema with this name already exists in collection", async () =
 
     await expect(atomicassets.contract.createschema({
         authorized_creator: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format: [
             {name: "name", type: "string"}
@@ -186,7 +186,7 @@ test("create schema as authorized account but not author", async () => {
     await atomicassets.loadFixtures();
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user2.accountName],
@@ -198,7 +198,7 @@ test("create schema as authorized account but not author", async () => {
 
     await atomicassets.contract.createschema({
         authorized_creator: user2.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format: [
             {name: "name", type: "string"}
@@ -208,7 +208,7 @@ test("create schema as authorized account but not author", async () => {
         permission: "active"
     }]);
 
-    const collection_schemas = atomicassets.getTableRowsScoped("schemas")["testcol"];
+    const collection_schemas = atomicassets.getTableRowsScoped("schemas")["testcollect1"];
     expect(collection_schemas).toEqual([{
         schema_name: "testschema",
         format: [
@@ -220,7 +220,7 @@ test("create schema as authorized account but not author", async () => {
 test("throw without authorization from authorized creator", async () => {
     await expect(atomicassets.contract.createschema({
         authorized_creator: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format: [
             {name: "name", type: "string"}
@@ -234,7 +234,7 @@ test("throw without authorization from authorized creator", async () => {
 test("throw when authorized_creator is not actually authorized", async () => {
     await expect(atomicassets.contract.createschema({
         authorized_creator: user2.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format: [
             {name: "name", type: "string"}

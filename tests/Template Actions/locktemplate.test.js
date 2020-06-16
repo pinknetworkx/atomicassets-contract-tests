@@ -28,7 +28,7 @@ beforeEach(async () => {
     await atomicassets.loadFixtures();
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user1.accountName],
@@ -38,7 +38,7 @@ beforeEach(async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"},
@@ -51,7 +51,7 @@ beforeEach(async () => {
 
 test("lock template that had no max supply previously", async () => {
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -64,14 +64,14 @@ test("lock template that had no max supply previously", async () => {
 
     await atomicassets.contract.locktemplate({
         authorized_editor: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         template_id: 1
     }, [{
         actor: user1.accountName,
         permission: "active"
     }]);
 
-    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcol"];
+    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcollect1"];
     expect(collection_templates).toEqual([{
         template_id: 1,
         schema_name: "testschema",
@@ -85,7 +85,7 @@ test("lock template that had no max supply previously", async () => {
 
 test("lock template that had a max supply previously", async () => {
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -98,14 +98,14 @@ test("lock template that had a max supply previously", async () => {
 
     await atomicassets.contract.locktemplate({
         authorized_editor: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         template_id: 1
     }, [{
         actor: user1.accountName,
         permission: "active"
     }]);
 
-    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcol"];
+    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcollect1"];
     expect(collection_templates).toEqual([{
         template_id: 1,
         schema_name: "testschema",
@@ -119,7 +119,7 @@ test("lock template that had a max supply previously", async () => {
 
 test("lock template where max supply is equal to issued supply", async () => {
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -132,14 +132,14 @@ test("lock template where max supply is equal to issued supply", async () => {
 
     await atomicassets.contract.locktemplate({
         authorized_editor: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         template_id: 1
     }, [{
         actor: user1.accountName,
         permission: "active"
     }]);
 
-    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcol"];
+    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcollect1"];
     expect(collection_templates).toEqual([{
         template_id: 1,
         schema_name: "testschema",
@@ -153,7 +153,7 @@ test("lock template where max supply is equal to issued supply", async () => {
 
 test("throw when issued supply is 0", async () => {
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -166,7 +166,7 @@ test("throw when issued supply is 0", async () => {
 
     await expect(atomicassets.contract.locktemplate({
         authorized_editor: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         template_id: 1
     }, [{
         actor: user1.accountName,
@@ -176,7 +176,7 @@ test("throw when issued supply is 0", async () => {
 
 test("throw when template with this id does not exist in collection", async () => {
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -189,7 +189,7 @@ test("throw when template with this id does not exist in collection", async () =
 
     await expect(atomicassets.contract.locktemplate({
         authorized_editor: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         template_id: 2
     }, [{
         actor: user1.accountName,
@@ -199,7 +199,7 @@ test("throw when template with this id does not exist in collection", async () =
 
 test("throw when collection does not exist", async () => {
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -225,7 +225,7 @@ test("lock template as authorized account but not author", async () => {
     await atomicassets.loadFixtures();
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user2.accountName],
@@ -235,7 +235,7 @@ test("lock template as authorized account but not author", async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"},
@@ -245,7 +245,7 @@ test("lock template as authorized account but not author", async () => {
         }]
     });
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -258,14 +258,14 @@ test("lock template as authorized account but not author", async () => {
 
     await atomicassets.contract.locktemplate({
         authorized_editor: user2.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         template_id: 1
     }, [{
         actor: user2.accountName,
         permission: "active"
     }]);
 
-    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcol"];
+    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcollect1"];
     expect(collection_templates).toEqual([{
         template_id: 1,
         schema_name: "testschema",
@@ -279,7 +279,7 @@ test("lock template as authorized account but not author", async () => {
 
 test("throw without authorization from authorized creator", async () => {
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -292,7 +292,7 @@ test("throw without authorization from authorized creator", async () => {
 
     await expect(atomicassets.contract.locktemplate({
         authorized_editor: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         template_id: 1
     }, [{
         actor: user2.accountName,
@@ -302,7 +302,7 @@ test("throw without authorization from authorized creator", async () => {
 
 test("throw when authorized_creator is not actually authorized", async () => {
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -315,7 +315,7 @@ test("throw when authorized_creator is not actually authorized", async () => {
 
     await expect(atomicassets.contract.locktemplate({
         authorized_editor: user2.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         template_id: 1
     }, [{
         actor: user2.accountName,

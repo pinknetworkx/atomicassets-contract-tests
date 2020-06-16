@@ -29,7 +29,7 @@ beforeEach(async () => {
     await atomicassets.loadFixtures();
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user1.accountName],
@@ -39,7 +39,7 @@ beforeEach(async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"},
@@ -54,7 +54,7 @@ test("set data of asset that previously didnt have data", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -79,7 +79,7 @@ test("set data of asset that previously didnt have data", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")[user3.accountName];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user1.accountName,
@@ -93,7 +93,7 @@ test("overwrite data of asset that already has data", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -118,7 +118,7 @@ test("overwrite data of asset that already has data", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")[user3.accountName];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user1.accountName,
@@ -132,7 +132,7 @@ test("erase data of asset that already has data", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -155,7 +155,7 @@ test("erase data of asset that already has data", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")[user3.accountName];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user1.accountName,
@@ -184,7 +184,7 @@ test("set data as authorized account but not author", async () => {
     await atomicassets.loadFixtures();
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user2.accountName],
@@ -194,7 +194,7 @@ test("set data as authorized account but not author", async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"},
@@ -206,7 +206,7 @@ test("set data as authorized account but not author", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -231,7 +231,7 @@ test("set data as authorized account but not author", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")[user3.accountName];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user2.accountName,
@@ -245,7 +245,7 @@ test("throw without authorization from authorized editor", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -272,7 +272,7 @@ test("throw when authorized_editor is not actually authorized", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,

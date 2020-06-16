@@ -28,7 +28,7 @@ beforeEach(async () => {
     await atomicassets.loadFixtures();
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user1.accountName],
@@ -38,7 +38,7 @@ beforeEach(async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"},
@@ -52,7 +52,7 @@ beforeEach(async () => {
 test("create minimal template", async () => {
     await atomicassets.contract.createtempl({
         authorized_creator: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         transferable: true,
         burnable: true,
@@ -63,7 +63,7 @@ test("create minimal template", async () => {
         permission: "active"
     }]);
 
-    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcol"];
+    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcollect1"];
     expect(collection_templates).toEqual([{
         template_id: 1,
         schema_name: "testschema",
@@ -78,7 +78,7 @@ test("create minimal template", async () => {
 test("create two minimal templates", async () => {
     await atomicassets.contract.createtempl({
         authorized_creator: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         transferable: true,
         burnable: true,
@@ -90,7 +90,7 @@ test("create two minimal templates", async () => {
     }]);
     await atomicassets.contract.createtempl({
         authorized_creator: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         transferable: true,
         burnable: true,
@@ -101,7 +101,7 @@ test("create two minimal templates", async () => {
         permission: "active"
     }]);
 
-    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcol"];
+    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcollect1"];
     expect(collection_templates).toEqual([
         {
             template_id: 1,
@@ -127,7 +127,7 @@ test("create two minimal templates", async () => {
 test("create template with data", async () => {
     await atomicassets.contract.createtempl({
         authorized_creator: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         transferable: true,
         burnable: true,
@@ -140,7 +140,7 @@ test("create template with data", async () => {
         permission: "active"
     }]);
 
-    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcol"];
+    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcollect1"];
     expect(collection_templates).toEqual([{
         template_id: 1,
         schema_name: "testschema",
@@ -155,7 +155,7 @@ test("create template with data", async () => {
 test("create template with max supply / non transferable / non burnable", async () => {
     await atomicassets.contract.createtempl({
         authorized_creator: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         transferable: false,
         burnable: false,
@@ -166,7 +166,7 @@ test("create template with max supply / non transferable / non burnable", async 
         permission: "active"
     }]);
 
-    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcol"];
+    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcollect1"];
     expect(collection_templates).toEqual([{
         template_id: 1,
         schema_name: "testschema",
@@ -196,7 +196,7 @@ test("throw when collection does not exist", async () => {
 test("throw when schema does not exist in collection", async () => {
     await expect(atomicassets.contract.createtempl({
         authorized_creator: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "noschema",
         transferable: true,
         burnable: true,
@@ -213,7 +213,7 @@ test("create template as authorized account but not author", async () => {
     await atomicassets.loadFixtures();
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user2.accountName],
@@ -223,7 +223,7 @@ test("create template as authorized account but not author", async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"},
@@ -235,7 +235,7 @@ test("create template as authorized account but not author", async () => {
 
     await atomicassets.contract.createtempl({
         authorized_creator: user2.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         transferable: true,
         burnable: true,
@@ -246,7 +246,7 @@ test("create template as authorized account but not author", async () => {
         permission: "active"
     }]);
 
-    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcol"];
+    const collection_templates = atomicassets.getTableRowsScoped("templates")["testcollect1"];
     expect(collection_templates).toEqual([{
         template_id: 1,
         schema_name: "testschema",
@@ -261,7 +261,7 @@ test("create template as authorized account but not author", async () => {
 test("throw without authorization from authorized creator", async () => {
     await expect(atomicassets.contract.createtempl({
         authorized_creator: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         transferable: true,
         burnable: true,
@@ -276,7 +276,7 @@ test("throw without authorization from authorized creator", async () => {
 test("throw when authorized_creator is not actually authorized", async () => {
     await expect(atomicassets.contract.createtempl({
         authorized_creator: user2.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         transferable: true,
         burnable: true,

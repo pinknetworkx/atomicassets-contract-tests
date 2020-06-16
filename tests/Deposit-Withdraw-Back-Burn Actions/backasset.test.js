@@ -28,7 +28,7 @@ beforeEach(async () => {
     await atomicassets.resetTables();
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -38,7 +38,7 @@ beforeEach(async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"},
@@ -79,7 +79,7 @@ test("back first token", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -105,7 +105,7 @@ test("back first token", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")["user3"];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user1.accountName,
@@ -145,7 +145,7 @@ test("back same token again", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -171,7 +171,7 @@ test("back same token again", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")["user3"];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user1.accountName,
@@ -211,7 +211,7 @@ test("back part of only token in the payers balance", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -240,7 +240,7 @@ test("back part of only token in the payers balance", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")["user3"];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user1.accountName,
@@ -281,7 +281,7 @@ test("back second token", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -307,7 +307,7 @@ test("back second token", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")["user3"];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user1.accountName,
@@ -348,7 +348,7 @@ test("back all of one of multiple tokens in the payers balance", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -377,7 +377,7 @@ test("back all of one of multiple tokens in the payers balance", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")["user3"];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user1.accountName,
@@ -418,7 +418,7 @@ test("back part of one of multiple tokens in the payers balance", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -447,7 +447,7 @@ test("back part of one of multiple tokens in the payers balance", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")["user3"];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user1.accountName,
@@ -488,7 +488,7 @@ test("ram payer changes when payer is different than existing ram payer", async 
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -514,7 +514,7 @@ test("ram payer changes when payer is different than existing ram payer", async 
     const user3_assets = atomicassets.getTableRowsScoped("assets")["user3"];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user2.accountName,
@@ -546,7 +546,7 @@ test("throw when payer does not have a balance row", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -590,7 +590,7 @@ test("throw when payer does not have a balance for the token to back", async () 
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -640,7 +640,7 @@ test("throw when payer has tokens, but less than required", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -690,7 +690,7 @@ test("throw when token to back is negative", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -775,7 +775,7 @@ test("throw when the asset is not burnable", async () => {
     });
 
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -788,7 +788,7 @@ test("throw when the asset is not burnable", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: 1,
             ram_payer: user1.accountName,
@@ -838,7 +838,7 @@ test("throw withour authorization from payer", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,

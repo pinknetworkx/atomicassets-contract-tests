@@ -28,7 +28,7 @@ beforeEach(async () => {
     await atomicassets.loadFixtures();
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user1.accountName],
@@ -38,7 +38,7 @@ beforeEach(async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"}
@@ -50,7 +50,7 @@ beforeEach(async () => {
 test("extend schema by one attribute", async () => {
     await atomicassets.contract.extendschema({
         authorized_editor: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format_extension: [
             {name: "img", type: "ipfs"}
@@ -60,7 +60,7 @@ test("extend schema by one attribute", async () => {
         permission: "active"
     }]);
 
-    const collection_schemas = atomicassets.getTableRowsScoped("schemas")["testcol"];
+    const collection_schemas = atomicassets.getTableRowsScoped("schemas")["testcollect1"];
     expect(collection_schemas).toEqual([{
         schema_name: "testschema",
         format: [
@@ -73,7 +73,7 @@ test("extend schema by one attribute", async () => {
 test("extend schema by multiple attributes", async () => {
     await atomicassets.contract.extendschema({
         authorized_editor: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format_extension: [
             {name: "img", type: "ipfs"},
@@ -85,7 +85,7 @@ test("extend schema by multiple attributes", async () => {
         permission: "active"
     }]);
 
-    const collection_schemas = atomicassets.getTableRowsScoped("schemas")["testcol"];
+    const collection_schemas = atomicassets.getTableRowsScoped("schemas")["testcollect1"];
     expect(collection_schemas).toEqual([{
         schema_name: "testschema",
         format: [
@@ -100,7 +100,7 @@ test("extend schema by multiple attributes", async () => {
 test("throw when format extension is empty", async () => {
     await expect(atomicassets.contract.extendschema({
         authorized_editor: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format_extension: []
     }, [{
@@ -126,7 +126,7 @@ test("throw when collection does not exist", async () => {
 test("throw when schema does not exist in collection", async () => {
     await expect(atomicassets.contract.extendschema({
         authorized_editor: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "noschema",
         schema_format_extension: [
             {name: "img", type: "ipfs"}
@@ -142,7 +142,7 @@ test("extend schema as authorized account but not author", async () => {
     await atomicassets.loadFixtures();
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user2.accountName],
@@ -152,7 +152,7 @@ test("extend schema as authorized account but not author", async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"}
@@ -162,7 +162,7 @@ test("extend schema as authorized account but not author", async () => {
 
     await atomicassets.contract.extendschema({
         authorized_editor: user2.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format_extension: [
             {name: "img", type: "ipfs"}
@@ -172,7 +172,7 @@ test("extend schema as authorized account but not author", async () => {
         permission: "active"
     }]);
 
-    const collection_schemas = atomicassets.getTableRowsScoped("schemas")["testcol"];
+    const collection_schemas = atomicassets.getTableRowsScoped("schemas")["testcollect1"];
     expect(collection_schemas).toEqual([{
         schema_name: "testschema",
         format: [
@@ -185,7 +185,7 @@ test("extend schema as authorized account but not author", async () => {
 test("throw without authorization from authorized editor", async () => {
     await expect(atomicassets.contract.extendschema({
         authorized_editor: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format_extension: [
             {name: "img", type: "ipfs"}
@@ -199,7 +199,7 @@ test("throw without authorization from authorized editor", async () => {
 test("throw when authorized_editor is not actually authorized", async () => {
     await expect(atomicassets.contract.extendschema({
         authorized_editor: user2.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         schema_format_extension: [
             {name: "img", type: "ipfs"}

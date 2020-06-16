@@ -205,7 +205,7 @@ test("throw without authorization from owner", async () => {
     await atomicassets.loadFixtures("assets", {
         "user3": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,

@@ -36,7 +36,7 @@ beforeEach(async () => {
 
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -46,7 +46,7 @@ beforeEach(async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"},
@@ -79,7 +79,7 @@ test("burn basic asset", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -138,7 +138,7 @@ test("burn asset with single backed token", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -216,7 +216,7 @@ test("burn asset with multiple backed tokens", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -271,7 +271,7 @@ test("issued supply in template stays the same after burning", async () => {
     });
 
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -284,7 +284,7 @@ test("issued supply in template stays the same after burning", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: 1,
             ram_payer: user1.accountName,
@@ -305,7 +305,7 @@ test("issued supply in template stays the same after burning", async () => {
     const user1_assets = atomicassets.getTableRowsScoped("assets")[user1.accountName];
     expect(user1_assets).toBeUndefined();
 
-    const testcol_templates = atomicassets.getTableRowsScoped("templates")["testcol"];
+    const testcol_templates = atomicassets.getTableRowsScoped("templates")["testcollect1"];
     expect(testcol_templates).toEqual([{
         template_id: 1,
         schema_name: "testschema",
@@ -372,7 +372,7 @@ test("throw when asset is not burnable", async () => {
     });
 
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -385,7 +385,7 @@ test("throw when asset is not burnable", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: 1,
             ram_payer: user1.accountName,
@@ -427,7 +427,7 @@ test("throw without authorization from asset owner", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,

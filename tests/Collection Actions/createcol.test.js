@@ -31,7 +31,7 @@ beforeEach(async () => {
 test("create basic collection", async () => {
     await atomicassets.contract.createcol({
         author: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         allow_notify: true,
         authorized_accounts: [user1.accountName],
         notify_accounts: [],
@@ -44,7 +44,7 @@ test("create basic collection", async () => {
 
     const collections = atomicassets.getTableRowsScoped("collections")["atomicassets"];
     expect(collections).toEqual([{
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         author: user1.accountName,
         allow_notify: true,
         authorized_accounts: [user1.accountName],
@@ -57,7 +57,7 @@ test("create basic collection", async () => {
 test("create collection with notify account and two auth accounts", async () => {
     await atomicassets.contract.createcol({
         author: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         allow_notify: true,
         authorized_accounts: [user1.accountName, user2.accountName],
         notify_accounts: [user1.accountName],
@@ -70,7 +70,7 @@ test("create collection with notify account and two auth accounts", async () => 
 
     const collections = atomicassets.getTableRowsScoped("collections")["atomicassets"];
     expect(collections).toEqual([{
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         author: user1.accountName,
         allow_notify: true,
         authorized_accounts: [user1.accountName, user2.accountName],
@@ -83,7 +83,7 @@ test("create collection with notify account and two auth accounts", async () => 
 test("throw when two auth accounts are duplicate", async () => {
     await expect(atomicassets.contract.createcol({
         author: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         allow_notify: true,
         authorized_accounts: [user1.accountName, user1.accountName],
         notify_accounts: [],
@@ -98,7 +98,7 @@ test("throw when two auth accounts are duplicate", async () => {
 test("throw when two notify accounts are duplicate", async () => {
     await expect(atomicassets.contract.createcol({
         author: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         allow_notify: true,
         authorized_accounts: [],
         notify_accounts: [user1.accountName, user1.accountName],
@@ -113,7 +113,7 @@ test("throw when two notify accounts are duplicate", async () => {
 test("throw when auth account does not exist", async () => {
     await expect(atomicassets.contract.createcol({
         author: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         allow_notify: true,
         authorized_accounts: ["noaccount"],
         notify_accounts: [],
@@ -128,7 +128,7 @@ test("throw when auth account does not exist", async () => {
 test("throw when notify account does not exist", async () => {
     await expect(atomicassets.contract.createcol({
         author: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         allow_notify: true,
         authorized_accounts: [],
         notify_accounts: ["noaccount"],
@@ -143,7 +143,7 @@ test("throw when notify account does not exist", async () => {
 test("throw when notify is not allowed but notify account is added", async () => {
     await expect(atomicassets.contract.createcol({
         author: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         allow_notify: false,
         authorized_accounts: [],
         notify_accounts: ["noaccount"],
@@ -158,7 +158,7 @@ test("throw when notify is not allowed but notify account is added", async () =>
 test("throw when market_fee is too high", async () => {
     await expect(atomicassets.contract.createcol({
         author: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         allow_notify: false,
         authorized_accounts: [],
         notify_accounts: [],
@@ -173,7 +173,7 @@ test("throw when market_fee is too high", async () => {
 test("throw when market_fee is negative", async () => {
     await expect(atomicassets.contract.createcol({
         author: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         allow_notify: false,
         authorized_accounts: [],
         notify_accounts: [],
@@ -198,7 +198,7 @@ test("throw when name is an account name", async () => {
     }, [{
         actor: user1.accountName,
         permission: "active"
-    }])).rejects.toThrow("You can't create a collection with a name of an existing, different account");
+    }])).rejects.toThrow("When the collection has the name of an existing account, its authorization is required");
 });
 
 test("collection name is account name but with auth", async () => {
@@ -226,7 +226,7 @@ test("collection name is account name but with auth", async () => {
 test("throw when collection name already exists", async () => {
     await atomicassets.contract.createcol({
         author: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         allow_notify: true,
         authorized_accounts: [user1.accountName],
         notify_accounts: [],
@@ -239,7 +239,7 @@ test("throw when collection name already exists", async () => {
 
     await expect(atomicassets.contract.createcol({
         author: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         allow_notify: true,
         authorized_accounts: [user1.accountName],
         notify_accounts: [],
@@ -255,7 +255,7 @@ test("throw without author auth from author", async () => {
 
     await expect(atomicassets.contract.createcol({
         author: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         allow_notify: false,
         authorized_accounts: [],
         notify_accounts: [],

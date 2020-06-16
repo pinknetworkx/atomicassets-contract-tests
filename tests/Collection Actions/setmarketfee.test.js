@@ -28,7 +28,7 @@ beforeEach(async () => {
     await atomicassets.loadFixtures();
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -41,7 +41,7 @@ beforeEach(async () => {
 
 test("set market fee", async () => {
     await atomicassets.contract.setmarketfee({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         market_fee: 0.1
     }, [{
         actor: user1.accountName,
@@ -50,7 +50,7 @@ test("set market fee", async () => {
 
     const collections = atomicassets.getTableRowsScoped("collections")["atomicassets"];
     expect(collections).toEqual([{
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         author: user1.accountName,
         allow_notify: true,
         authorized_accounts: [],
@@ -62,7 +62,7 @@ test("set market fee", async () => {
 
 test("set market fee to 0", async () => {
     await atomicassets.contract.setmarketfee({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         market_fee: 0
     }, [{
         actor: user1.accountName,
@@ -71,7 +71,7 @@ test("set market fee to 0", async () => {
 
     const collections = atomicassets.getTableRowsScoped("collections")["atomicassets"];
     expect(collections).toEqual([{
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         author: user1.accountName,
         allow_notify: true,
         authorized_accounts: [],
@@ -83,7 +83,7 @@ test("set market fee to 0", async () => {
 
 test("set market fee to max allowed", async () => {
     await atomicassets.contract.setmarketfee({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         market_fee: 0.15
     }, [{
         actor: user1.accountName,
@@ -92,7 +92,7 @@ test("set market fee to max allowed", async () => {
 
     const collections = atomicassets.getTableRowsScoped("collections")["atomicassets"];
     expect(collections).toEqual([{
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         author: user1.accountName,
         allow_notify: true,
         authorized_accounts: [],
@@ -104,7 +104,7 @@ test("set market fee to max allowed", async () => {
 
 test("throw when market fee is negative", async () => {
     await expect(atomicassets.contract.setmarketfee({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         market_fee: -0.01
     }, [{
         actor: user1.accountName,
@@ -114,7 +114,7 @@ test("throw when market fee is negative", async () => {
 
 test("throw when market fee is above max", async () => {
     await expect(atomicassets.contract.setmarketfee({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         market_fee: 0.151
     }, [{
         actor: user1.accountName,
@@ -124,7 +124,7 @@ test("throw when market fee is above max", async () => {
 
 test("throw when market fee is NaN", async () => {
     await expect(atomicassets.contract.setmarketfee({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         market_fee: "NaN"
     }, [{
         actor: user1.accountName,
@@ -144,7 +144,7 @@ test("throw when collection does not exist", async () => {
 
 test("throw without authorization from author", async () => {
     await expect(atomicassets.contract.setmarketfee({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         market_fee: 0
     }, [{
         actor: user2.accountName,

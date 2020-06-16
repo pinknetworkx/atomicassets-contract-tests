@@ -31,7 +31,7 @@ beforeEach(async () => {
 test("forbid notify", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -42,7 +42,7 @@ test("forbid notify", async () => {
     });
 
     await atomicassets.contract.forbidnotify({
-        collection_name: "testcol"
+        collection_name: "testcollect1"
     }, [{
         actor: user1.accountName,
         permission: "active"
@@ -50,7 +50,7 @@ test("forbid notify", async () => {
 
     const collections = atomicassets.getTableRowsScoped("collections")["atomicassets"];
     expect(collections).toEqual([{
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         author: user1.accountName,
         allow_notify: false,
         authorized_accounts: [],
@@ -63,7 +63,7 @@ test("forbid notify", async () => {
 test("throw when notify is already forbidden", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: false,
             authorized_accounts: [],
@@ -74,7 +74,7 @@ test("throw when notify is already forbidden", async () => {
     });
 
     await expect(atomicassets.contract.forbidnotify({
-        collection_name: "testcol"
+        collection_name: "testcollect1"
     }, [{
         actor: user1.accountName,
         permission: "active"
@@ -84,7 +84,7 @@ test("throw when notify is already forbidden", async () => {
 test("throw when one account is in the notfy list", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: false,
             authorized_accounts: [],
@@ -95,7 +95,7 @@ test("throw when one account is in the notfy list", async () => {
     });
 
     await expect(atomicassets.contract.forbidnotify({
-        collection_name: "testcol"
+        collection_name: "testcollect1"
     }, [{
         actor: user1.accountName,
         permission: "active"
@@ -105,7 +105,7 @@ test("throw when one account is in the notfy list", async () => {
 test("throw when multiple accounts are in the notfy list", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: false,
             authorized_accounts: [],
@@ -116,7 +116,7 @@ test("throw when multiple accounts are in the notfy list", async () => {
     });
 
     await expect(atomicassets.contract.forbidnotify({
-        collection_name: "testcol"
+        collection_name: "testcollect1"
     }, [{
         actor: user1.accountName,
         permission: "active"
@@ -126,7 +126,7 @@ test("throw when multiple accounts are in the notfy list", async () => {
 test("throw when collection does not exist", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: false,
             authorized_accounts: [],
@@ -147,7 +147,7 @@ test("throw when collection does not exist", async () => {
 test("throw without authorization from author", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: false,
             authorized_accounts: [],
@@ -158,7 +158,7 @@ test("throw without authorization from author", async () => {
     });
 
     await expect(atomicassets.contract.forbidnotify({
-        collection_name: "testcol"
+        collection_name: "testcollect1"
     }, [{
         actor: user2.accountName,
         permission: "active"

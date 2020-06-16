@@ -29,7 +29,7 @@ beforeEach(async () => {
 
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -39,7 +39,7 @@ beforeEach(async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"},
@@ -56,7 +56,7 @@ test("transfer basic asset", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -82,7 +82,7 @@ test("transfer basic asset", async () => {
     const user2_assets = atomicassets.getTableRowsScoped("assets")[user2.accountName];
     expect(user2_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: "eosio",
@@ -99,7 +99,7 @@ test("transfer multiple basic assets", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -109,7 +109,7 @@ test("transfer multiple basic assets", async () => {
             },
             {
                 asset_id: "1099511627777",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -119,7 +119,7 @@ test("transfer multiple basic assets", async () => {
             },
             {
                 asset_id: "1099511627778",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -143,7 +143,7 @@ test("transfer multiple basic assets", async () => {
     const user1_assets = atomicassets.getTableRowsScoped("assets")[user1.accountName];
     expect(user1_assets).toEqual([{
         asset_id: "1099511627778",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: "eosio",
@@ -156,7 +156,7 @@ test("transfer multiple basic assets", async () => {
     expect(user2_assets).toEqual([
         {
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -166,7 +166,7 @@ test("transfer multiple basic assets", async () => {
         },
         {
             asset_id: "1099511627777",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -206,7 +206,7 @@ test("transfer multiple assets of different collections", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -244,7 +244,7 @@ test("transfer multiple assets of different collections", async () => {
     expect(user2_assets).toEqual([
         {
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -294,7 +294,7 @@ test("transfer with a memo", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -322,7 +322,7 @@ test("transfer with a memo", async () => {
     expect(user2_assets).toEqual([
         {
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -337,7 +337,7 @@ test("transfer assets with a template", async () => {
     expect.assertions(2);
 
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -352,7 +352,7 @@ test("transfer assets with a template", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: 1,
                 ram_payer: "eosio",
@@ -380,7 +380,7 @@ test("transfer assets with a template", async () => {
     expect(user2_assets).toEqual([
         {
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: 1,
             ram_payer: "eosio",
@@ -398,7 +398,7 @@ test("transfer assets with data", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -426,7 +426,7 @@ test("transfer assets with data", async () => {
     expect(user2_assets).toEqual([
         {
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -444,7 +444,7 @@ test("transfer assets with backed tokens", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -472,7 +472,7 @@ test("transfer assets with backed tokens", async () => {
     expect(user2_assets).toEqual([
         {
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -487,7 +487,7 @@ test("throw when transferring the same asset multiple times", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -496,7 +496,7 @@ test("throw when transferring the same asset multiple times", async () => {
             mutable_serialized_data: []
         },{
             asset_id: "1099511627777",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -521,7 +521,7 @@ test("throw when the sender does not own at least one of the assets", async () =
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -544,7 +544,7 @@ test("throw when the sender does not own at least one of the assets", async () =
 
 test("throw when at least one asset is not transferable", async () => {
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: false,
@@ -559,7 +559,7 @@ test("throw when at least one asset is not transferable", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -569,7 +569,7 @@ test("throw when at least one asset is not transferable", async () => {
             },
             {
                 asset_id: "1099511627777",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: 1,
                 ram_payer: "eosio",
@@ -595,7 +595,7 @@ test("throw when to account does not exist", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -620,7 +620,7 @@ test("throw when to and from is the same", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -657,7 +657,7 @@ test("throw when memo is over 256 chars", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -684,7 +684,7 @@ test("throw without authorization from sender", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",

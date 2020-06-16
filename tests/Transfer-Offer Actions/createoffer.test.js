@@ -29,7 +29,7 @@ beforeEach(async () => {
 
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -39,7 +39,7 @@ beforeEach(async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"},
@@ -56,7 +56,7 @@ test("create offer 1 for 0", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -80,7 +80,7 @@ test("create offer 1 for 0", async () => {
     const user1_assets = atomicassets.getTableRowsScoped("assets")[user1.accountName];
     expect(user1_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: "eosio",
@@ -106,7 +106,7 @@ test("create offer 0 for 1", async () => {
     await atomicassets.loadFixtures("assets", {
         "user2": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -130,7 +130,7 @@ test("create offer 0 for 1", async () => {
     const user2_assets = atomicassets.getTableRowsScoped("assets")[user2.accountName];
     expect(user2_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: "eosio",
@@ -154,7 +154,7 @@ test("create two equal offers 1 for 0", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -211,7 +211,7 @@ test("create offer 2 for 0", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -221,7 +221,7 @@ test("create offer 2 for 0", async () => {
             },
             {
                 asset_id: "1099511627777",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -259,7 +259,7 @@ test("create offer 0 for 2", async () => {
         "user2": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -269,7 +269,7 @@ test("create offer 0 for 2", async () => {
             },
             {
                 asset_id: "1099511627777",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -307,7 +307,7 @@ test("create offer 2 for 2", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -317,7 +317,7 @@ test("create offer 2 for 2", async () => {
             },
             {
                 asset_id: "1099511627777",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -329,7 +329,7 @@ test("create offer 2 for 2", async () => {
         "user2": [
             {
                 asset_id: "1099511627778",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -339,7 +339,7 @@ test("create offer 2 for 2", async () => {
             },
             {
                 asset_id: "1099511627779",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -399,7 +399,7 @@ test("create offer with assets of different collections", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -446,7 +446,7 @@ test("create offer with memo", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -480,7 +480,7 @@ test("create offer with memo", async () => {
 
 test("create offer with asset that has a template", async () => {
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -494,7 +494,7 @@ test("create offer with asset that has a template", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: 1,
             ram_payer: "eosio",
@@ -530,7 +530,7 @@ test("throw when sender does not own one of the assets", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -556,7 +556,7 @@ test("throw when recipient does not own one of the assets", async () => {
     await atomicassets.loadFixtures("assets", {
         "user2": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -580,7 +580,7 @@ test("throw when recipient does not own one of the assets", async () => {
 
 test("throw when one of sender's assets is not transferable", async () => {
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: false,
@@ -595,7 +595,7 @@ test("throw when one of sender's assets is not transferable", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -605,7 +605,7 @@ test("throw when one of sender's assets is not transferable", async () => {
             },
             {
                 asset_id: "1099511627777",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: 1,
                 ram_payer: "eosio",
@@ -630,7 +630,7 @@ test("throw when one of sender's assets is not transferable", async () => {
 
 test("throw when one of recipient's assets is not transferable", async () => {
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: false,
@@ -645,7 +645,7 @@ test("throw when one of recipient's assets is not transferable", async () => {
         "user2": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -655,7 +655,7 @@ test("throw when one of recipient's assets is not transferable", async () => {
             },
             {
                 asset_id: "1099511627777",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: 1,
                 ram_payer: "eosio",
@@ -683,7 +683,7 @@ test("throw when recipient account does not exist", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -711,7 +711,7 @@ test("throw when sender and recipient is the same account", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -752,7 +752,7 @@ test("throw when memo is over 256 chars", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -782,7 +782,7 @@ test("throw without authorization from sender", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",

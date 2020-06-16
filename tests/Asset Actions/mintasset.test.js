@@ -29,7 +29,7 @@ beforeEach(async () => {
     await atomicassets.loadFixtures();
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user1.accountName],
@@ -39,7 +39,7 @@ beforeEach(async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"},
@@ -53,7 +53,7 @@ beforeEach(async () => {
 test("mint minimal asset", async () => {
     await atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         new_asset_owner: user3.accountName,
@@ -68,7 +68,7 @@ test("mint minimal asset", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")[user3.accountName];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user1.accountName,
@@ -81,7 +81,7 @@ test("mint minimal asset", async () => {
 test("mint two minimal assets", async () => {
     await atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         new_asset_owner: user3.accountName,
@@ -95,7 +95,7 @@ test("mint two minimal assets", async () => {
 
     await atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         new_asset_owner: user3.accountName,
@@ -111,7 +111,7 @@ test("mint two minimal assets", async () => {
     expect(user3_assets).toEqual([
         {
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -121,7 +121,7 @@ test("mint two minimal assets", async () => {
         },
         {
             asset_id: "1099511627777",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: user1.accountName,
@@ -135,7 +135,7 @@ test("mint two minimal assets", async () => {
 test("throw when new owner account does not exist", async () => {
     await expect(atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         new_asset_owner: "noaccount",
@@ -151,7 +151,7 @@ test("throw when new owner account does not exist", async () => {
 test("mint asset with data", async () => {
     await atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         new_asset_owner: user3.accountName,
@@ -170,7 +170,7 @@ test("mint asset with data", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")[user3.accountName];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user1.accountName,
@@ -192,7 +192,7 @@ test("mint asset with one backed token", async () => {
 
     await atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         new_asset_owner: user3.accountName,
@@ -207,7 +207,7 @@ test("mint asset with one backed token", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")[user3.accountName];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user1.accountName,
@@ -235,7 +235,7 @@ test("mint asset with two backed tokens", async () => {
 
     await atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         new_asset_owner: user3.accountName,
@@ -250,7 +250,7 @@ test("mint asset with two backed tokens", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")[user3.accountName];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user1.accountName,
@@ -269,7 +269,7 @@ test("mint asset with two backed tokens", async () => {
 test("throw when minter tries to back tokens but does not have any balance", async () => {
     await expect(atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         new_asset_owner: user3.accountName,
@@ -292,7 +292,7 @@ test("throw when minter tries to back tokens but does not have enough balance", 
 
     await expect(atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         new_asset_owner: user3.accountName,
@@ -315,7 +315,7 @@ test("throw when minter tries to back tokens but only has balance for a differen
 
     await expect(atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         new_asset_owner: user3.accountName,
@@ -332,7 +332,7 @@ test("mint asset referencing a template", async () => {
     expect.assertions(2);
 
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -345,7 +345,7 @@ test("mint asset referencing a template", async () => {
 
     await atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: 1,
         new_asset_owner: user3.accountName,
@@ -360,7 +360,7 @@ test("mint asset referencing a template", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")[user3.accountName];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: 1,
         ram_payer: user1.accountName,
@@ -369,7 +369,7 @@ test("mint asset referencing a template", async () => {
         mutable_serialized_data: []
     }]);
 
-    const testcol_templates = atomicassets.getTableRowsScoped("templates")["testcol"];
+    const testcol_templates = atomicassets.getTableRowsScoped("templates")["testcollect1"];
     expect(testcol_templates).toEqual([{
         template_id: 1,
         schema_name: "testschema",
@@ -383,7 +383,7 @@ test("mint asset referencing a template", async () => {
 
 test("throw when minting asset referencing a template that reached its max supply", async () => {
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -396,7 +396,7 @@ test("throw when minting asset referencing a template that reached its max suppl
 
     await expect(atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: 1,
         new_asset_owner: user3.accountName,
@@ -418,7 +418,7 @@ test("throw when minting asset with backed token referencing a template that is 
     });
 
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -431,7 +431,7 @@ test("throw when minting asset with backed token referencing a template that is 
 
     await expect(atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: 1,
         new_asset_owner: user3.accountName,
@@ -447,7 +447,7 @@ test("throw when minting asset with backed token referencing a template that is 
 test("throw when template id is a negative number other than -1", async () => {
     await expect(atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -2,
         new_asset_owner: user3.accountName,
@@ -462,7 +462,7 @@ test("throw when template id is a negative number other than -1", async () => {
 
 test("throw when template belongs to another schema", async () => {
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "different",
             transferable: true,
@@ -475,7 +475,7 @@ test("throw when template belongs to another schema", async () => {
 
     await expect(atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: 1,
         new_asset_owner: user3.accountName,
@@ -507,7 +507,7 @@ test("throw when collection does not exist", async () => {
 test("throw when schema does not exist", async () => {
     await expect(atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "noschema",
         template_id: -1,
         new_asset_owner: user3.accountName,
@@ -523,7 +523,7 @@ test("throw when schema does not exist", async () => {
 test("throw when template does not exist", async () => {
     await expect(atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: 1,
         new_asset_owner: user3.accountName,
@@ -541,7 +541,7 @@ test("mint asset as authorized account but not author", async () => {
     await atomicassets.loadFixtures();
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [user2.accountName],
@@ -551,7 +551,7 @@ test("mint asset as authorized account but not author", async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"},
@@ -563,7 +563,7 @@ test("mint asset as authorized account but not author", async () => {
 
     await atomicassets.contract.mintasset({
         authorized_minter: user2.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         new_asset_owner: user3.accountName,
@@ -578,7 +578,7 @@ test("mint asset as authorized account but not author", async () => {
     const user3_assets = atomicassets.getTableRowsScoped("assets")[user3.accountName];
     expect(user3_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: user2.accountName,
@@ -591,7 +591,7 @@ test("mint asset as authorized account but not author", async () => {
 test("throw without authorization from authorized minter", async () => {
     await expect(atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         new_asset_owner: user3.accountName,
@@ -607,7 +607,7 @@ test("throw without authorization from authorized minter", async () => {
 test("throw when authorized_creator is not actually authorized", async () => {
     await expect(atomicassets.contract.mintasset({
         authorized_minter: user2.accountName,
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         new_asset_owner: user3.accountName,

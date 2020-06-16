@@ -29,7 +29,7 @@ beforeEach(async () => {
 
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -39,7 +39,7 @@ beforeEach(async () => {
         }]
     });
     await atomicassets.loadFixtures("schemas", {
-        "testcol": [{
+        "testcollect1": [{
             schema_name: "testschema",
             format: [
                 {name: "name", type: "string"},
@@ -57,7 +57,7 @@ test("accept offer 1 for 0", async () => {
     await atomicassets.loadFixtures("assets", {
         "user1": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -90,7 +90,7 @@ test("accept offer 1 for 0", async () => {
     const user2_assets = atomicassets.getTableRowsScoped("assets")[user2.accountName];
     expect(user2_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: "eosio",
@@ -109,7 +109,7 @@ test("accept offer 0 for 1", async () => {
     await atomicassets.loadFixtures("assets", {
         "user2": [{
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -139,7 +139,7 @@ test("accept offer 0 for 1", async () => {
     const user1_assets = atomicassets.getTableRowsScoped("assets")[user1.accountName];
     expect(user1_assets).toEqual([{
         asset_id: "1099511627776",
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         schema_name: "testschema",
         template_id: -1,
         ram_payer: "eosio",
@@ -162,7 +162,7 @@ test("accept offer 2 for 0", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -172,7 +172,7 @@ test("accept offer 2 for 0", async () => {
             },
             {
                 asset_id: "1099511627777",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -207,7 +207,7 @@ test("accept offer 2 for 0", async () => {
     expect(user2_assets).toEqual([
         {
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -217,7 +217,7 @@ test("accept offer 2 for 0", async () => {
         },
         {
             asset_id: "1099511627777",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -238,7 +238,7 @@ test("accept offer 0 for 2", async () => {
         "user2": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -248,7 +248,7 @@ test("accept offer 0 for 2", async () => {
             },
             {
                 asset_id: "1099511627777",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -280,7 +280,7 @@ test("accept offer 0 for 2", async () => {
     expect(user1_assets).toEqual([
         {
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -290,7 +290,7 @@ test("accept offer 0 for 2", async () => {
         },
         {
             asset_id: "1099511627777",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -314,7 +314,7 @@ test("accept offer 2 for 2", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -324,7 +324,7 @@ test("accept offer 2 for 2", async () => {
             },
             {
                 asset_id: "1099511627777",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -336,7 +336,7 @@ test("accept offer 2 for 2", async () => {
         "user2": [
             {
                 asset_id: "1099511627778",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -346,7 +346,7 @@ test("accept offer 2 for 2", async () => {
             },
             {
                 asset_id: "1099511627779",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -378,7 +378,7 @@ test("accept offer 2 for 2", async () => {
     expect(user1_assets).toEqual([
         {
             asset_id: "1099511627778",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -388,7 +388,7 @@ test("accept offer 2 for 2", async () => {
         },
         {
             asset_id: "1099511627779",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -402,7 +402,7 @@ test("accept offer 2 for 2", async () => {
     expect(user2_assets).toEqual([
         {
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -412,7 +412,7 @@ test("accept offer 2 for 2", async () => {
         },
         {
             asset_id: "1099511627777",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -455,7 +455,7 @@ test("accept offer with assets from different collections", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -500,7 +500,7 @@ test("accept offer with assets from different collections", async () => {
     expect(user2_assets).toEqual([
         {
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -528,7 +528,7 @@ test("accept offer with asset that has a template", async () => {
     expect.assertions(3);
 
     await atomicassets.loadFixtures("templates", {
-        "testcol": [{
+        "testcollect1": [{
             template_id: 1,
             schema_name: "testschema",
             transferable: true,
@@ -543,7 +543,7 @@ test("accept offer with asset that has a template", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -553,7 +553,7 @@ test("accept offer with asset that has a template", async () => {
             },
             {
                 asset_id: "1099511627777",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: 1,
                 ram_payer: "eosio",
@@ -588,7 +588,7 @@ test("accept offer with asset that has a template", async () => {
     expect(user2_assets).toEqual([
         {
             asset_id: "1099511627776",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: -1,
             ram_payer: "eosio",
@@ -598,7 +598,7 @@ test("accept offer with asset that has a template", async () => {
         },
         {
             asset_id: "1099511627777",
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             schema_name: "testschema",
             template_id: 1,
             ram_payer: "eosio",
@@ -617,7 +617,7 @@ test("throw when sender does not own one of the assets", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -651,7 +651,7 @@ test("throw when recipient does not own one of the assets", async () => {
         "user2": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",
@@ -685,7 +685,7 @@ test("throw without authorization from recipient", async () => {
         "user1": [
             {
                 asset_id: "1099511627776",
-                collection_name: "testcol",
+                collection_name: "testcollect1",
                 schema_name: "testschema",
                 template_id: -1,
                 ram_payer: "eosio",

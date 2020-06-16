@@ -31,7 +31,7 @@ beforeEach(async () => {
 test("remove single account", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -42,7 +42,7 @@ test("remove single account", async () => {
     });
 
     await atomicassets.contract.remnotifyacc({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         account_to_remove: user1.accountName
     }, [{
         actor: user1.accountName,
@@ -51,7 +51,7 @@ test("remove single account", async () => {
 
     const collections = atomicassets.getTableRowsScoped("collections")["atomicassets"];
     expect(collections).toEqual([{
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         author: user1.accountName,
         allow_notify: true,
         authorized_accounts: [],
@@ -64,7 +64,7 @@ test("remove single account", async () => {
 test("remove one of many", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -75,7 +75,7 @@ test("remove one of many", async () => {
     });
 
     await atomicassets.contract.remnotifyacc({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         account_to_remove: user1.accountName
     }, [{
         actor: user1.accountName,
@@ -84,7 +84,7 @@ test("remove one of many", async () => {
 
     const collections = atomicassets.getTableRowsScoped("collections")["atomicassets"];
     expect(collections).toEqual([{
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         author: user1.accountName,
         allow_notify: true,
         authorized_accounts: [],
@@ -97,7 +97,7 @@ test("remove one of many", async () => {
 test("throw when there are no notify accounts", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -108,7 +108,7 @@ test("throw when there are no notify accounts", async () => {
     });
 
     await expect(atomicassets.contract.remnotifyacc({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         account_to_remove: user1.accountName
     }, [{
         actor: user1.accountName,
@@ -119,7 +119,7 @@ test("throw when there are no notify accounts", async () => {
 test("throw when account is not a notify account", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -130,7 +130,7 @@ test("throw when account is not a notify account", async () => {
     });
 
     await expect(atomicassets.contract.remnotifyacc({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         account_to_remove: user1.accountName
     }, [{
         actor: user1.accountName,
@@ -151,7 +151,7 @@ test("throw when collection does not exist", async () => {
 test("throw without authorization from author", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -162,7 +162,7 @@ test("throw without authorization from author", async () => {
     });
 
     await expect(atomicassets.contract.remnotifyacc({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         account_to_remove: user1.accountName
     }, [{
         actor: user2.accountName,

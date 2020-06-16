@@ -31,7 +31,7 @@ beforeEach(async () => {
 test("add one account", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -42,7 +42,7 @@ test("add one account", async () => {
     });
 
     await atomicassets.contract.addnotifyacc({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         account_to_add: user1.accountName
     }, [{
         actor: user1.accountName,
@@ -51,7 +51,7 @@ test("add one account", async () => {
 
     const collections = atomicassets.getTableRowsScoped("collections")["atomicassets"];
     expect(collections).toEqual([{
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         author: user1.accountName,
         allow_notify: true,
         authorized_accounts: [],
@@ -64,7 +64,7 @@ test("add one account", async () => {
 test("add second account", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -75,7 +75,7 @@ test("add second account", async () => {
     });
 
     await atomicassets.contract.addnotifyacc({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         account_to_add: user2.accountName
     }, [{
         actor: user1.accountName,
@@ -84,7 +84,7 @@ test("add second account", async () => {
 
     const collections = atomicassets.getTableRowsScoped("collections")["atomicassets"];
     expect(collections).toEqual([{
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         author: user1.accountName,
         allow_notify: true,
         authorized_accounts: [],
@@ -97,7 +97,7 @@ test("add second account", async () => {
 test("throw when allow notify is false", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: false,
             authorized_accounts: [],
@@ -108,7 +108,7 @@ test("throw when allow notify is false", async () => {
     });
 
     await expect(atomicassets.contract.addnotifyacc({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         account_to_add: user1.accountName
     }, [{
         actor: user1.accountName,
@@ -119,7 +119,7 @@ test("throw when allow notify is false", async () => {
 test("throw when not an account", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -130,7 +130,7 @@ test("throw when not an account", async () => {
     });
 
     await expect(atomicassets.contract.addnotifyacc({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         account_to_add: "noaccount"
     }, [{
         actor: user1.accountName,
@@ -141,7 +141,7 @@ test("throw when not an account", async () => {
 test("throw when duplicate", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -152,7 +152,7 @@ test("throw when duplicate", async () => {
     });
 
     await expect(atomicassets.contract.addnotifyacc({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         account_to_add: user1.accountName
     }, [{
         actor: user1.accountName,
@@ -163,7 +163,7 @@ test("throw when duplicate", async () => {
 test("throw when collection does not exist", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -185,7 +185,7 @@ test("throw when collection does not exist", async () => {
 test("throw without authorization from author", async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
-            collection_name: "testcol",
+            collection_name: "testcollect1",
             author: user1.accountName,
             allow_notify: true,
             authorized_accounts: [],
@@ -196,7 +196,7 @@ test("throw without authorization from author", async () => {
     });
 
     await expect(atomicassets.contract.addnotifyacc({
-        collection_name: "testcol",
+        collection_name: "testcollect1",
         account_to_add: user1.accountName
     }, [{
         actor: user2.accountName,
