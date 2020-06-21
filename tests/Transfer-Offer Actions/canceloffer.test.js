@@ -37,7 +37,8 @@ test("cancel offer", async () => {
             recipient: user2.accountName,
             sender_asset_ids: ["1099511627776", "1099511627777"],
             recipient_asset_ids: ["1099511627778"],
-            memo: "Example memo. Doesn't matter anyways."
+            memo: "Example memo. Doesn't matter anyways.",
+            ram_payer: user1.accountName
         }]
     })
 
@@ -60,7 +61,8 @@ test("throw without authorization from the offer sender", async () => {
             recipient: user2.accountName,
             sender_asset_ids: ["1099511627776", "1099511627777"],
             recipient_asset_ids: ["1099511627778"],
-            memo: "Example memo. Doesn't matter anyways."
+            memo: "Example memo. Doesn't matter anyways.",
+            ram_payer: user1.accountName
         }]
     })
 

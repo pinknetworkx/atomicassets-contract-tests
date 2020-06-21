@@ -63,7 +63,7 @@ test("withdraw all of the only deposited token", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"}
+                    {"contract": "eosio.token", "sym": "8,WAX"}
                 ]
             }
         ]
@@ -122,7 +122,7 @@ test("withdraw a part of the only deposited token", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"}
+                    {"contract": "eosio.token", "sym": "8,WAX"}
                 ]
             }
         ]
@@ -184,8 +184,8 @@ test("withdraw all of one of multiple deposited token", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -247,8 +247,8 @@ test("withdraw all of a non eosio.token token", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -292,7 +292,7 @@ test("throw when withdrawer does not have a balance row", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"}
+                    {"contract": "eosio.token", "sym": "8,WAX"}
                 ]
             }
         ]
@@ -320,8 +320,8 @@ test("throw when withdrawer does not have a balance for the token to withdraw", 
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -355,8 +355,8 @@ test("throw when withdrawer has tokens, but less than the withdrawal", async () 
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -403,8 +403,8 @@ test("throw when the withdrawal amount is negative", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -451,8 +451,8 @@ test("throw without authorization from owner", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]

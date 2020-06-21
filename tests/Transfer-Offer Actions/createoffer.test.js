@@ -96,7 +96,8 @@ test("create offer 1 for 0", async () => {
         recipient: user2.accountName,
         sender_asset_ids: ["1099511627776"],
         recipient_asset_ids: [],
-        memo: ""
+        memo: "",
+        ram_payer: user1.accountName
     }]);
 });
 
@@ -146,7 +147,8 @@ test("create offer 0 for 1", async () => {
         recipient: user2.accountName,
         sender_asset_ids: [],
         recipient_asset_ids: ["1099511627776"],
-        memo: ""
+        memo: "",
+        ram_payer: user1.accountName
     }]);
 });
 
@@ -193,7 +195,8 @@ test("create two equal offers 1 for 0", async () => {
             recipient: user2.accountName,
             sender_asset_ids: ["1099511627776"],
             recipient_asset_ids: [],
-            memo: ""
+            memo: "",
+            ram_payer: user1.accountName
         },
         {
             offer_id: "2",
@@ -201,7 +204,8 @@ test("create two equal offers 1 for 0", async () => {
             recipient: user2.accountName,
             sender_asset_ids: ["1099511627776"],
             recipient_asset_ids: [],
-            memo: ""
+            memo: "",
+            ram_payer: user1.accountName
         }
     ]);
 });
@@ -250,7 +254,8 @@ test("create offer 2 for 0", async () => {
         recipient: user2.accountName,
         sender_asset_ids: ["1099511627776", "1099511627777"],
         recipient_asset_ids: [],
-        memo: ""
+        memo: "",
+        ram_payer: user1.accountName
     }]);
 });
 
@@ -298,7 +303,8 @@ test("create offer 0 for 2", async () => {
         recipient: user2.accountName,
         sender_asset_ids: [],
         recipient_asset_ids: ["1099511627776", "1099511627777"],
-        memo: ""
+        memo: "",
+        ram_payer: user1.accountName
     }]);
 });
 
@@ -368,7 +374,8 @@ test("create offer 2 for 2", async () => {
         recipient: user2.accountName,
         sender_asset_ids: ["1099511627776", "1099511627777"],
         recipient_asset_ids: ["1099511627778", "1099511627779"],
-        memo: ""
+        memo: "",
+        ram_payer: user1.accountName
     }]);
 });
 
@@ -438,7 +445,8 @@ test("create offer with assets of different collections", async () => {
         recipient: user2.accountName,
         sender_asset_ids: ["1099511627776", "1099511627777"],
         recipient_asset_ids: [],
-        memo: ""
+        memo: "",
+        ram_payer: user1.accountName
     }]);
 });
 
@@ -474,7 +482,8 @@ test("create offer with memo", async () => {
         recipient: user2.accountName,
         sender_asset_ids: ["1099511627776", ],
         recipient_asset_ids: [],
-        memo: "This is an example memo"
+        memo: "This is an example memo",
+        ram_payer: user1.accountName
     }]);
 });
 
@@ -522,7 +531,8 @@ test("create offer with asset that has a template", async () => {
         recipient: user2.accountName,
         sender_asset_ids: ["1099511627776", ],
         recipient_asset_ids: [],
-        memo: ""
+        memo: "",
+        ram_payer: user1.accountName
     }]);
 });
 

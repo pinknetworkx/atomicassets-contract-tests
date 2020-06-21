@@ -73,7 +73,8 @@ test("accept offer 1 for 0", async () => {
             recipient: user2.accountName,
             sender_asset_ids: ["1099511627776"],
             recipient_asset_ids: [],
-            memo: ""
+            memo: "",
+            ram_payer: user1.accountName
         }]
     })
 
@@ -125,7 +126,8 @@ test("accept offer 0 for 1", async () => {
             recipient: user2.accountName,
             sender_asset_ids: [],
             recipient_asset_ids: ["1099511627776"],
-            memo: ""
+            memo: "",
+            ram_payer: user1.accountName
         }]
     })
 
@@ -189,7 +191,8 @@ test("accept offer 2 for 0", async () => {
             recipient: user2.accountName,
             sender_asset_ids: ["1099511627776", "1099511627777"],
             recipient_asset_ids: [],
-            memo: ""
+            memo: "",
+            ram_payer: user1.accountName
         }]
     })
 
@@ -265,7 +268,8 @@ test("accept offer 0 for 2", async () => {
             recipient: user2.accountName,
             sender_asset_ids: [],
             recipient_asset_ids: ["1099511627776", "1099511627777"],
-            memo: ""
+            memo: "",
+            ram_payer: user1.accountName
         }]
     })
 
@@ -363,7 +367,8 @@ test("accept offer 2 for 2", async () => {
             recipient: user2.accountName,
             sender_asset_ids: ["1099511627776", "1099511627777"],
             recipient_asset_ids: ["1099511627778", "1099511627779"],
-            memo: ""
+            memo: "",
+            ram_payer: user1.accountName
         }]
     })
 
@@ -482,7 +487,8 @@ test("accept offer with assets from different collections", async () => {
             recipient: user2.accountName,
             sender_asset_ids: ["1099511627776", "1099511627777"],
             recipient_asset_ids: [],
-            memo: ""
+            memo: "",
+            ram_payer: user1.accountName
         }]
     })
 
@@ -570,7 +576,8 @@ test("accept offer with asset that has a template", async () => {
             recipient: user2.accountName,
             sender_asset_ids: ["1099511627776", "1099511627777"],
             recipient_asset_ids: [],
-            memo: ""
+            memo: "",
+            ram_payer: user1.accountName
         }]
     })
 
@@ -634,7 +641,8 @@ test("throw when sender does not own one of the assets", async () => {
             recipient: user2.accountName,
             sender_asset_ids: ["1099511627776", "1099511627777"],
             recipient_asset_ids: [],
-            memo: ""
+            memo: "",
+            ram_payer: user1.accountName
         }]
     })
 
@@ -668,7 +676,8 @@ test("throw when recipient does not own one of the assets", async () => {
             recipient: user2.accountName,
             sender_asset_ids: [],
             recipient_asset_ids: ["1099511627776", "1099511627777"],
-            memo: ""
+            memo: "",
+            ram_payer: user1.accountName
         }]
     })
 
@@ -702,7 +711,8 @@ test("throw without authorization from recipient", async () => {
             recipient: user2.accountName,
             sender_asset_ids: ["1099511627776"],
             recipient_asset_ids: [],
-            memo: ""
+            memo: "",
+            ram_payer: user1.accountName
         }]
     })
 

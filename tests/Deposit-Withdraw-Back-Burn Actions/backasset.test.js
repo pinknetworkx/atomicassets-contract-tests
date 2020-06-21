@@ -64,7 +64,7 @@ test("back first token", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"}
+                    {"contract": "eosio.token", "sym": "8,WAX"}
                 ]
             }
         ]
@@ -130,7 +130,7 @@ test("back same token again", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"}
+                    {"contract": "eosio.token", "sym": "8,WAX"}
                 ]
             }
         ]
@@ -196,7 +196,7 @@ test("back part of only token in the payers balance", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"}
+                    {"contract": "eosio.token", "sym": "8,WAX"}
                 ]
             }
         ]
@@ -265,8 +265,8 @@ test("back second token", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -332,8 +332,8 @@ test("back all of one of multiple tokens in the payers balance", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -402,8 +402,8 @@ test("back part of one of multiple tokens in the payers balance", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -472,8 +472,8 @@ test("ram payer changes when payer is different than existing ram payer", async 
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -537,7 +537,7 @@ test("throw when payer does not have a balance row", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"}
+                    {"contract": "eosio.token", "sym": "8,WAX"}
                 ]
             }
         ]
@@ -580,8 +580,8 @@ test("throw when payer does not have a balance for the token to back", async () 
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -630,8 +630,8 @@ test("throw when payer has tokens, but less than required", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -680,8 +680,8 @@ test("throw when token to back is negative", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -724,8 +724,8 @@ test("throw when the specified owner does not own the asset", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -761,8 +761,8 @@ test("throw when the asset is not burnable", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -822,8 +822,8 @@ test("throw withour authorization from payer", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]

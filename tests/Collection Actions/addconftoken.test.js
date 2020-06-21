@@ -49,8 +49,8 @@ test("add one token", async () => {
     const config_row = atomicassets.getTableRowsScoped("config")["atomicassets"][0];
 
     expect(config_row.supported_tokens).toEqual([{
-        token_contract: "eosio.token",
-        token_symbol: "8,WAX"
+        contract: "eosio.token",
+        sym: "8,WAX"
     }]);
 });
 
@@ -75,12 +75,12 @@ test("add two tokens of same contract", async () => {
 
     expect(config_row.supported_tokens).toEqual([
         {
-            token_contract: "eosio.token",
-            token_symbol: "8,WAX"
+            contract: "eosio.token",
+            sym: "8,WAX"
         },
         {
-            token_contract: "eosio.token",
-            token_symbol: "0,SYS"
+            contract: "eosio.token",
+            sym: "0,SYS"
         }
     ]);
 });

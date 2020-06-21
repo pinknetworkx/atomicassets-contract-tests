@@ -194,7 +194,7 @@ test("throw when template with this id does not exist in collection", async () =
     }, [{
         actor: user1.accountName,
         permission: "active"
-    }])).rejects.toThrow("No template with the specified id exists for the specified colleciton");
+    }])).rejects.toThrow("No template with the specified id exists for the specified collection");
 });
 
 test("throw when collection does not exist", async () => {
@@ -298,6 +298,17 @@ test("throw without authorization from authorized creator", async () => {
         actor: user2.accountName,
         permission: "active"
     }])).rejects.toThrow("Missing required authority");
+});
+
+test("throw when template id is negative", async () => {
+    await expect(atomicassets.contract.locktemplate({
+        authorized_editor: user1.accountName,
+        collection_name: "testcollect1",
+        template_id: -1
+    }, [{
+        actor: user1.accountName,
+        permission: "active"
+    }])).rejects.toThrow("The template id must be positive");
 });
 
 test("throw when authorized_creator is not actually authorized", async () => {

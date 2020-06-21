@@ -70,7 +70,7 @@ test("burn basic asset", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"}
+                    {"contract": "eosio.token", "sym": "8,WAX"}
                 ]
             }
         ]
@@ -129,7 +129,7 @@ test("burn asset with single backed token", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"}
+                    {"contract": "eosio.token", "sym": "8,WAX"}
                 ]
             }
         ]
@@ -206,8 +206,8 @@ test("burn asset with multiple backed tokens", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -263,8 +263,8 @@ test("issued supply in template stays the same after burning", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -335,8 +335,8 @@ test("throw when asset does not exist", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -364,8 +364,8 @@ test("throw when asset is not burnable", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]
@@ -417,8 +417,8 @@ test("throw without authorization from asset owner", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"}
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"}
                 ]
             }
         ]

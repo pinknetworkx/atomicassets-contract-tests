@@ -60,7 +60,7 @@ test("send first deposit of only announced token", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"}
+                    {"contract": "eosio.token", "sym": "8,WAX"}
                 ]
             }
         ]
@@ -115,9 +115,9 @@ test("send first deposit of one of many tokens", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "eosio.token", "token_symbol": "4,EOS"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"},
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "eosio.token", "sym": "4,EOS"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"},
                 ]
             }
         ]
@@ -172,9 +172,9 @@ test("send deposit when balance table already has a balance for that token", asy
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "eosio.token", "token_symbol": "4,EOS"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"},
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "eosio.token", "sym": "4,EOS"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"},
                 ]
             }
         ]
@@ -229,9 +229,9 @@ test("send deposit from non eosio.token token contract", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "eosio.token", "token_symbol": "4,EOS"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"},
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "eosio.token", "sym": "4,EOS"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"},
                 ]
             }
         ]
@@ -286,7 +286,7 @@ test("throw when token is not supported (same symbol as supported token)", async
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"}
+                    {"contract": "eosio.token", "sym": "8,WAX"}
                 ]
             }
         ]
@@ -335,7 +335,7 @@ test("throw when balance row of depositer has not been initialized", async () =>
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"}
+                    {"contract": "eosio.token", "sym": "8,WAX"}
                 ]
             }
         ]
@@ -378,8 +378,8 @@ test("throw when balance row of depositer does not have an entry for the deposit
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"},
-                    {"token_contract": "karmatoken", "token_symbol": "4,KARMA"},
+                    {"contract": "eosio.token", "sym": "8,WAX"},
+                    {"contract": "karmatoken", "sym": "4,KARMA"},
                 ]
             }
         ]
@@ -428,7 +428,7 @@ test("throw when memo is invalid", async () => {
                     {"name": "description", "type": "string"}
                 ],
                 supported_tokens: [
-                    {"token_contract": "eosio.token", "token_symbol": "8,WAX"}
+                    {"contract": "eosio.token", "sym": "8,WAX"}
                 ]
             }
         ]

@@ -71,20 +71,6 @@
             ]
         },
         {
-            "name": "TOKEN",
-            "base": "",
-            "fields": [
-                {
-                    "name": "token_contract",
-                    "type": "name"
-                },
-                {
-                    "name": "token_symbol",
-                    "type": "symbol"
-                }
-            ]
-        },
-        {
             "name": "acceptoffer",
             "base": "",
             "fields": [
@@ -314,7 +300,7 @@
                 },
                 {
                     "name": "supported_tokens",
-                    "type": "TOKEN[]"
+                    "type": "extended_symbol[]"
                 }
             ]
         },
@@ -445,6 +431,20 @@
             ]
         },
         {
+            "name": "extended_symbol",
+            "base": "",
+            "fields": [
+                {
+                    "name": "sym",
+                    "type": "symbol"
+                },
+                {
+                    "name": "contract",
+                    "type": "name"
+                }
+            ]
+        },
+        {
             "name": "extendschema",
             "base": "",
             "fields": [
@@ -523,7 +523,7 @@
                 },
                 {
                     "name": "template_id",
-                    "type": "uint32"
+                    "type": "int32"
                 }
             ]
         },
@@ -810,6 +810,10 @@
                 {
                     "name": "memo",
                     "type": "string"
+                },
+                {
+                    "name": "ram_payer",
+                    "type": "name"
                 }
             ]
         },
@@ -949,7 +953,7 @@
             "fields": [
                 {
                     "name": "template_id",
-                    "type": "uint32"
+                    "type": "int32"
                 },
                 {
                     "name": "schema_name",
