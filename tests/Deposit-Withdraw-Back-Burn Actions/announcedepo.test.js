@@ -167,7 +167,7 @@ test("throw when token is not supported", async () => {
     }])).rejects.toThrow("The specified symbol is not supported");
 });
 
-test("throw when token has already been announced", async () => {
+test("do nothing when token has already been announced", async () => {
     await atomicassets.loadFixtures("config", {
         "atomicassets": [
             {
@@ -192,13 +192,21 @@ test("throw when token has already been announced", async () => {
         }]
     });
 
-    await expect(atomicassets.contract.announcedepo({
+    await atomicassets.contract.announcedepo({
         owner: user1.accountName,
         symbol_to_announce: "8,WAX"
     }, [{
         actor: user1.accountName,
         permission: "active"
-    }])).rejects.toThrow("The specified symbol has already been announced");
+    }]);
+
+
+
+    const balances = atomicassets.getTableRowsScoped("balances")["atomicassets"];
+    expect(balances).toEqual([{
+        owner: user1.accountName,
+        quantities: ["10.00000000 WAX"]
+    }]);
 });
 
 test("throw without authorization from owner", async () => {
