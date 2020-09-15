@@ -444,6 +444,29 @@ test("throw when minting asset with backed token referencing a template that is 
     }])).rejects.toThrow("The asset is not burnable. Only burnable assets can be backed.");
 });
 
+test("throw when minting asset with multiple backed tokens with the same symbol", async () => {
+    await atomicassets.loadFixtures("balances", {
+        "atomicassets": [{
+            owner: user1.accountName,
+            quantities: ["100.00000000 WAX"]
+        }]
+    });
+
+    await expect(atomicassets.contract.mintasset({
+        authorized_minter: user1.accountName,
+        collection_name: "testcollect1",
+        schema_name: "testschema",
+        template_id: -1,
+        new_asset_owner: user3.accountName,
+        immutable_data: [],
+        mutable_data: [],
+        tokens_to_back: ["50.00000000 WAX","20.00000000 WAX"]
+    }, [{
+        actor: user1.accountName,
+        permission: "active"
+    }])).rejects.toThrow("Symbols in the tokens_to_back must be unique");
+});
+
 test("throw when template id is a negative number other than -1", async () => {
     await expect(atomicassets.contract.mintasset({
         authorized_minter: user1.accountName,
