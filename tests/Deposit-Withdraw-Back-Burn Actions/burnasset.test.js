@@ -102,7 +102,7 @@ test("burn basic asset", async () => {
 });
 
 test("burn asset with single backed token", async () => {
-    expect.assertions(2);
+    expect.assertions(4);
 
     await eosio_token.loadFixtures("stat", {
         "WAX": [{
@@ -159,14 +159,103 @@ test("burn asset with single backed token", async () => {
     const user1_assets = atomicassets.getTableRowsScoped("assets")[user1.accountName];
     expect(user1_assets).toBeUndefined();
 
-    const user1_token_balance = eosio_token.getTableRowsScoped("accounts")[user1.accountName];
-    expect(user1_token_balance).toEqual([{
+    const atomicassets_token_balance = eosio_token.getTableRowsScoped("accounts")["atomicassets"];
+    expect(atomicassets_token_balance).toEqual([{
         balance: "100.00000000 WAX"
+    }]);
+
+    const user1_token_balance = eosio_token.getTableRowsScoped("accounts")[user1.accountName];
+    expect(user1_token_balance).toBeUndefined();
+
+    const balances = atomicassets.getTableRowsScoped("balances")["atomicassets"];
+    expect(balances).toEqual([{
+        owner: user1.accountName,
+        quantities: ["100.00000000 WAX"]
+    }]);
+});
+
+test("burn asset with backed token when owner has a balance table", async () => {
+    expect.assertions(4);
+
+    await eosio_token.loadFixtures("stat", {
+        "WAX": [{
+            supply: "150.00000000 WAX",
+            max_supply: "1000.00000000 WAX",
+            issuer: "eosio"
+        }]
+    });
+    await eosio_token.loadFixtures("accounts", {
+        "atomicassets": [{
+            balance: "150.00000000 WAX"
+        }]
+    });
+
+    await atomicassets.loadFixtures("config", {
+        "atomicassets": [
+            {
+                asset_counter: "1099511627776",
+                template_counter: 1,
+                offer_counter: "1",
+                collection_format: [
+                    {"name": "name", "type": "string"},
+                    {"name": "img", "type": "ipfs"},
+                    {"name": "description", "type": "string"}
+                ],
+                supported_tokens: [
+                    {"contract": "eosio.token", "sym": "8,WAX"}
+                ]
+            }
+        ]
+    });
+
+    await atomicassets.loadFixtures("balances", {
+        "atomicassets": [{
+            owner: user1.accountName,
+            quantities: ["0.0000 EOS", "50.00000000 WAX"]
+        }]
+    });
+
+    await atomicassets.loadFixtures("assets", {
+        "user1": [{
+            asset_id: "1099511627776",
+            collection_name: "testcollect1",
+            schema_name: "testschema",
+            template_id: -1,
+            ram_payer: user1.accountName,
+            backed_tokens: ["100.00000000 WAX"],
+            immutable_serialized_data: [],
+            mutable_serialized_data: []
+        }]
+    });
+
+    await atomicassets.contract.burnasset({
+        asset_owner: user1.accountName,
+        asset_id: "1099511627776"
+    }, [{
+        actor: user1.accountName,
+        permission: "active"
+    }]);
+
+    const user1_assets = atomicassets.getTableRowsScoped("assets")[user1.accountName];
+    expect(user1_assets).toBeUndefined();
+
+    const atomicassets_token_balance = eosio_token.getTableRowsScoped("accounts")["atomicassets"];
+    expect(atomicassets_token_balance).toEqual([{
+        balance: "150.00000000 WAX"
+    }]);
+
+    const user1_token_balance = eosio_token.getTableRowsScoped("accounts")[user1.accountName];
+    expect(user1_token_balance).toBeUndefined();
+
+    const balances = atomicassets.getTableRowsScoped("balances")["atomicassets"];
+    expect(balances).toEqual([{
+        owner: user1.accountName,
+        quantities: ["0.0000 EOS", "150.00000000 WAX"]
     }]);
 });
 
 test("burn asset with multiple backed tokens", async () => {
-    expect.assertions(3);
+    expect.assertions(4);
 
     await eosio_token.loadFixtures("stat", {
         "WAX": [{
@@ -238,13 +327,15 @@ test("burn asset with multiple backed tokens", async () => {
     expect(user1_assets).toBeUndefined();
 
     const user1_token_balance = eosio_token.getTableRowsScoped("accounts")[user1.accountName];
-    expect(user1_token_balance).toEqual([{
-        balance: "100.00000000 WAX"
-    }]);
+    expect(user1_token_balance).toBeUndefined();
 
     const user1_karmatoken_balance = karma_token.getTableRowsScoped("accounts")[user1.accountName];
-    expect(user1_karmatoken_balance).toEqual([{
-        balance: "500.0000 KARMA"
+    expect(user1_karmatoken_balance).toBeUndefined();
+
+    const balances = atomicassets.getTableRowsScoped("balances")["atomicassets"];
+    expect(balances).toEqual([{
+        owner: user1.accountName,
+        quantities: ["500.0000 KARMA", "100.00000000 WAX"]
     }]);
 });
 
@@ -316,10 +407,6 @@ test("issued supply in template stays the same after burning", async () => {
         immutable_serialized_data: []
     }]);
 });
-
-
-
-
 
 
 test("throw when asset does not exist", async () => {
