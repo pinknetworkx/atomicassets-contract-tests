@@ -1075,7 +1075,7 @@
         {
             "name": "burnasset",
             "type": "burnasset",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Burn an asset\nsummary: '{{nowrap asset_owner}} burns his asset with the id {{nowrap asset_id}}'\nicon: https://atomicassets.io/image/logo256.png#108AEE3530F4EB368A4B0C28800894CFBABF46534F48345BF6453090554C52D5\n---\n\n<b>Description:</b>\n<div class=\"description\">\n{{asset_owner}} burns his asset with the id {{asset_id}}.\n\nIf there previously were core tokens backed for this asset, these core tokens are transferred to {{asset_owner}}.\n</div>\n\n<b>Clauses:</b>\n<div class=\"clauses\">\nThis action may only be called with the permission of {{asset_owner}}.\n</div>"
+            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Burn an asset\nsummary: '{{nowrap asset_owner}} burns his asset with the id {{nowrap asset_id}}'\nicon: https://atomicassets.io/image/logo256.png#108AEE3530F4EB368A4B0C28800894CFBABF46534F48345BF6453090554C52D5\n---\n\n<b>Description:</b>\n<div class=\"description\">\n{{asset_owner}} burns his asset with the id {{asset_id}}.\n\nIf there previously were tokens backed to this asset, these tokens are added to the balance table entry {{asset_owner}}.\n</div>\n\n<b>Clauses:</b>\n<div class=\"clauses\">\nThis action may only be called with the permission of {{asset_owner}}.\n</div>"
         },
         {
             "name": "canceloffer",

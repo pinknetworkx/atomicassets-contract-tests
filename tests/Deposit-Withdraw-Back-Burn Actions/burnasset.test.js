@@ -37,7 +37,7 @@ beforeEach(async () => {
     await atomicassets.loadFixtures("collections", {
         "atomicassets": [{
             collection_name: "testcollect1",
-            author: user1.accountName,
+            author: "anyaccount",
             allow_notify: true,
             authorized_accounts: [],
             notify_accounts: [],
@@ -58,6 +58,8 @@ beforeEach(async () => {
 });
 
 test("burn basic asset", async () => {
+    expect.assertions(2);
+
     await atomicassets.loadFixtures("config", {
         "atomicassets": [
             {
@@ -99,6 +101,9 @@ test("burn basic asset", async () => {
 
     const user1_assets = atomicassets.getTableRowsScoped("assets")[user1.accountName];
     expect(user1_assets).toBeUndefined();
+
+    const balances = atomicassets.getTableRowsScoped("balances")["atomicassets"];
+    expect(balances).toBeUndefined();
 });
 
 test("burn asset with single backed token", async () => {
