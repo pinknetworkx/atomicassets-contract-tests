@@ -1,5 +1,12 @@
 # AtomicAssets Tests
 
+> **This repository is archived.** These Hydra tests cover the v1 contract, whose repository is
+> archived as well. The AtomicAssets contract and its test suite are developed together at
+> [atomicassets/atomicassets-contract](https://github.com/atomicassets/atomicassets-contract),
+> where the tests live in
+> [`tests/`](https://github.com/atomicassets/atomicassets-contract/tree/main/tests) and run against
+> vert.
+
 Tests for the [AtomicAssets](https://github.com/pinknetworkx/atomicassets-contracts) smart contract written using the [Hydra Testing Framework](https://docs.klevoya.com/hydra/about/getting-started)
 
 -------
